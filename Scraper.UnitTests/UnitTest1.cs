@@ -9,7 +9,7 @@ namespace Scraper.UnitTests
         [TestMethod]
         public void ScrapeWSTest()
         {
-            Scraper.Program.ScrapeWS();
+            Scraper.Program.ScrapeWS01();
         }
     }
 }
