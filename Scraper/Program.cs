@@ -30,7 +30,7 @@ namespace Scraper
 
             var val = ScrapeWS01().Result;
             var iVal = Int32.Parse(val);
-            Console.Write("#");
+            Console.Write(iVal + ",");
 
             if (iVal < 70)
             {
