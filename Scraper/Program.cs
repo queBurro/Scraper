@@ -29,8 +29,13 @@ namespace Scraper
             Thread.Sleep(iWait * 1000);
 
             var val = ScrapeWS01().Result;
+            var iVal = Int32.Parse(val);
+            Console.Write("#");
 
-            Console.WriteLine(DateTime.Now + " " + val);
+            if (iVal < 70)
+            {
+                Console.WriteLine("\n"+ DateTime.Now + " " + val); 
+            }
         }
 
         public async static Task<string> ScrapeWS01()
