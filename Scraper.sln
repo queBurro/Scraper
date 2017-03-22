@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.26228.9
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Scraper", "Scraper\Scraper.csproj", "{EE8655EA-59E6-40D8-B684-700AEE8D1243}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Scraper.UnitTests", "Scraper.UnitTests\Scraper.UnitTests.csproj", "{5C0005DB-DBCD-43A0-A02F-0671FCFBDBE1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{EE8655EA-59E6-40D8-B684-700AEE8D1243}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EE8655EA-59E6-40D8-B684-700AEE8D1243}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EE8655EA-59E6-40D8-B684-700AEE8D1243}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5C0005DB-DBCD-43A0-A02F-0671FCFBDBE1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5C0005DB-DBCD-43A0-A02F-0671FCFBDBE1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5C0005DB-DBCD-43A0-A02F-0671FCFBDBE1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5C0005DB-DBCD-43A0-A02F-0671FCFBDBE1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

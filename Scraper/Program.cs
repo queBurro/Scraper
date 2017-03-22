@@ -1,30 +1,108 @@
 ﻿using System;
-using System.Linq;
-using System.Net;
-using System.Xml;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using HtmlAgilityPack;
+using System.IO;
+using System.IO.Compression;
 using System.Net;
 using System.Net.Http;
+using System.Threading;
+using System.Timers;
 
 namespace Scraper
 {
-    class Program
+    public class Program
     {
         static void Main(string[] args)
         {
+            System.Timers.Timer aTimer = new System.Timers.Timer();
+            aTimer.Elapsed += new ElapsedEventHandler(OnTimedEvent);
+            aTimer.Interval = 45000;
+            aTimer.Enabled = true;
+        }
 
-            HttpClient w = new HttpClient();
-            var resp = w.GetAsync("https://watchguy.co.uk/cgi-bin/book").Result;
+        private static void OnTimedEvent(object sender, ElapsedEventArgs e)
+        {
+            Random random = new Random();
+            int randomNumber = random.Next(0, 30);
+
+            Thread.Sleep(randomNumber);
+
+            Console.WriteLine(DateTime.Now);
+
+            //ScrapeWS01();
+        }
+
+        public async static void ScrapeWS01()
+        {
+            var url = "https://watchguy.co.uk/cgi-bin/book";
+            var httpClient = new HttpClient();
+
+            httpClient.DefaultRequestHeaders.TryAddWithoutValidation("Accept", "text/html,application/xhtml+xml,application/xml");
+            httpClient.DefaultRequestHeaders.TryAddWithoutValidation("Accept-Encoding", "gzip, deflate");
+            httpClient.DefaultRequestHeaders.TryAddWithoutValidation("User-Agent", "Mozilla/5.0 (Windows NT 6.2; WOW64; rv:19.0) Gecko/20100101 Firefox/19.0");
+            httpClient.DefaultRequestHeaders.TryAddWithoutValidation("Accept-Charset", "ISO-8859-1");
+
+            string tmp;
+
+            var response = httpClient.GetAsync(new Uri(url)).Result;
+            //response.EnsureSuccessStatusCode();
+            using (var responseStream = await response.Content.ReadAsStreamAsync())
+            using (var decompressedStream = new GZipStream(responseStream, CompressionMode.Decompress))
+            using (var streamReader = new StreamReader(decompressedStream))
+            {
+                tmp = streamReader.ReadToEnd();
+            }
+
+            Console.ReadLine();
+        }
+
+        public async static void ScrapeWS()
+        {
+            //var request = WebRequest.Create("https://watchguy.co.uk/cgi-bin/book");
+            //// Set the Method property of the request to POST.
+            //request.Method = "POST";
+            //var response = request.GetResponse();
 
 
 
 
-            var cont = resp.Content;
+            var url = "https://watchguy.co.uk/cgi-bin/book";
+            var httpClient = new HttpClient();
+
+            httpClient.DefaultRequestHeaders.TryAddWithoutValidation("Accept", "text/html,application/xhtml+xml,application/xml");
+            httpClient.DefaultRequestHeaders.TryAddWithoutValidation("Accept-Encoding", "gzip, deflate");
+            httpClient.DefaultRequestHeaders.TryAddWithoutValidation("User-Agent", "Mozilla/5.0 (Windows NT 6.2; WOW64; rv:19.0) Gecko/20100101 Firefox/19.0");
+            httpClient.DefaultRequestHeaders.TryAddWithoutValidation("Accept-Charset", "ISO-8859-1");
+
+            string tmp;
+
+            var response = httpClient.GetAsync(new Uri(url)).Result;
+            //response.EnsureSuccessStatusCode();
+            using (var responseStream = await response.Content.ReadAsStreamAsync())
+            using (var decompressedStream = new GZipStream(responseStream, CompressionMode.Decompress))
+            using (var streamReader = new StreamReader(decompressedStream))
+            {
+                tmp = streamReader.ReadToEnd();
+            }
+
+            //HttpClient httpClient = new HttpClient();
+
+            //httpClient.DefaultRequestHeaders.TryAddWithoutValidation("Accept", "text/html,application/xhtml+xml,application/xml");
+            //httpClient.DefaultRequestHeaders.TryAddWithoutValidation("Accept-Encoding", "gzip, deflate");
+            //httpClient.DefaultRequestHeaders.TryAddWithoutValidation("User-Agent", "Mozilla/5.0 (Windows NT 6.2; WOW64; rv:19.0) Gecko/20100101 Firefox/19.0");
+            //httpClient.DefaultRequestHeaders.TryAddWithoutValidation("Accept-Charset", "ISO-8859-1");
+
+
+            //var response = await httpClient.GetAsync("https://watchguy.co.uk/cgi-bin/book");
+            //response.EnsureSuccessStatusCode();
+
+            //using (var responseStream = await response.Content.ReadAsStreamAsync())
+            //using (var streamReader = new StreamReader(responseStream))
+            //{
+            //    Console.WriteLine(streamReader.ReadToEnd());
+            //}
+
+            //var cont = resp.Content;
+
+            //var resp = httpClient.get
 
 
             // 2.
@@ -67,7 +145,6 @@ namespace Scraper
             //}
 
             Console.ReadLine();
-
         }
     }
 }
